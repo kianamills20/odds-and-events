@@ -53,3 +53,6 @@ function sortAll() {
 }
 //created a loop so that it loops through all of the numberBank
 //and ends up in even or odds
+
+// possible createForm()? createButton()? --> 3 buttons, do i need ones for even and odds?
+//then some event listeners after compentent functions
