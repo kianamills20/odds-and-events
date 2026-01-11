@@ -56,3 +56,51 @@ function sortAll() {
 
 // possible createForm()? createButton()? --> 3 buttons, do i need ones for even and odds?
 //then some event listeners after compentent functions
+
+function createForm() {
+    const $form = document.createElement("form");
+    $form.innerHTML = `
+    <label>
+    Add a number to the bank <input name="addnumber" type="number"/>
+    </label>
+    <button>Add Number</button>
+    `;
+    $form.addEventListener("submit", function(event){
+        event.preventDefault();
+        const formData = new FormData($form);
+        const number = Number(formData.get("addnumber"));
+        addNumber(number);
+        $form.reset();
+        //commit out and in to see changes
+});
+return $form;
+}
+
+function numbank(nums){
+$bank.innerHTML = `
+<div>
+<p class = "bank">
+</p>
+</div>
+`;
+const $bank = document.querySelector("#bank");
+$bank.textContent = nums.length ? nums.join(",") : "";
+return $bank;
+}
+
+function render() {
+    const $app = document.querySelector("#app");
+    $app.innerHTML =`
+    <h1>Odds and Events</h1>
+    <createForm></createForm>
+    <main>
+    <div class = "numbank"></div>
+    <div class = "oddsbank"></div>
+    <div class = "evensbank"></div>
+    </main>
+    `;
+    $app.querySelector("createForm").replaceWith(createForm());
+    $app.querySelector("#numbank").replaceWith(numbank());
+    $app.querySelector("#oddsbank").replaceWith(oddsbank());
+    $app.querySelector("#evensbank").replaceWith(evensbank());
+}
