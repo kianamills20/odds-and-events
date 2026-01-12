@@ -54,6 +54,13 @@ function sortAll() {
 //created a loop so that it loops through all of the numberBank
 //and ends up in even or odds
 
+function randomNum(num = 100) {
+    const newNumber = Math.floor(Math.random() * num);
+    numberBank.push(newNumber);
+    render()
+}
+//trying to create a random num generator for a button
+
 // possible createForm()? createButton()? --> 3 buttons, do i need ones for even and odds?
 //then some event listeners after compentent functions
 
@@ -64,6 +71,7 @@ function createForm() {
     Add a number to the bank <input name="addnumber" type="number"/>
     </label>
     <button>Add Number</button>
+    <button id="random-num">Random Number</button>
     <button id="sort-one">Sort 1</button>
     <button id="sort-all">Sort All</button>
     `;
@@ -77,6 +85,7 @@ function createForm() {
 });
 $form.querySelector("#sort-one").addEventListener("click", sortOne);
 $form.querySelector("#sort-all").addEventListener("click", sortAll);
+$form.querySelector('#random-num').addEventListener("click", () => randomNum(100));
 return $form;
 }
 
@@ -90,7 +99,7 @@ $bank.innerHTML = `
 `;
 $bank.classList.add("bank");
 const $p = $bank.querySelector(".bank");
-$p.textContent = numberBank.length ? numberBank.join(",") : "Add numbers";
+$p.textContent = numberBank.length ? numberBank.join(" , ") : "Add numbers";
 return $bank;
 }
 
@@ -103,7 +112,7 @@ $bank.innerHTML = `
 </div>
 `;
 const $p = $bank.querySelector(".bank");
-$p.textContent = oddNumbers.length ? oddNumbers.join(",") : "Odd numbers";
+$p.textContent = oddNumbers.length ? oddNumbers.join(" , ") : "Odd numbers";
 return $bank;
 }
 
@@ -116,9 +125,10 @@ $bank.innerHTML = `
 </div>
 `;
 const $p = $bank.querySelector(".bank");
-$p.textContent = evenNumbers.length ? evenNumbers.join(",") : "Even numbers";
+$p.textContent = evenNumbers.length ? evenNumbers.join(" , ") : "Even numbers";
 return $bank;
-}
+} 
+
 
 function render() {
     const $app = document.querySelector("#app");
