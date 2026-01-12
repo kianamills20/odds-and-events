@@ -64,6 +64,8 @@ function createForm() {
     Add a number to the bank <input name="addnumber" type="number"/>
     </label>
     <button>Add Number</button>
+    <button id="sort-one">Sort 1</button>
+    <button id="sort-all">Sort All</button>
     `;
     $form.addEventListener("submit", function(event){
         event.preventDefault();
@@ -73,18 +75,48 @@ function createForm() {
         $form.reset();
         //commit out and in to see changes
 });
+$form.querySelector("#sort-one").addEventListener("click", sortOne);
+$form.querySelector("#sort-all").addEventListener("click", sortAll);
 return $form;
 }
 
-function numbank(nums){
+function numbank(num){
+const $bank = document.createElement("div");
 $bank.innerHTML = `
 <div>
 <p class = "bank">
 </p>
 </div>
 `;
-const $bank = document.querySelector("#bank");
-$bank.textContent = nums.length ? nums.join(",") : "";
+$bank.classList.add("bank");
+const $p = $bank.querySelector(".bank");
+$p.textContent = numberBank.length ? numberBank.join(",") : "Add numbers";
+return $bank;
+}
+
+function oddsbank(num){
+const $bank = document.createElement("div");
+$bank.innerHTML = `
+<div>
+<p class = "bank">
+</p>
+</div>
+`;
+const $p = $bank.querySelector(".bank");
+$p.textContent = oddNumbers.length ? oddNumbers.join(",") : "Odd numbers";
+return $bank;
+}
+
+function evensbank(num){    
+const $bank = document.createElement("div");
+$bank.innerHTML = `
+<div>
+<p class = "bank">
+</p>
+</div>
+`;
+const $p = $bank.querySelector(".bank");
+$p.textContent = evenNumbers.length ? evenNumbers.join(",") : "Even numbers";
 return $bank;
 }
 
@@ -100,7 +132,8 @@ function render() {
     </main>
     `;
     $app.querySelector("createForm").replaceWith(createForm());
-    $app.querySelector("#numbank").replaceWith(numbank());
-    $app.querySelector("#oddsbank").replaceWith(oddsbank());
-    $app.querySelector("#evensbank").replaceWith(evensbank());
+    $app.querySelector(".numbank").replaceWith(numbank());
+    $app.querySelector(".oddsbank").replaceWith(oddsbank());
+    $app.querySelector(".evensbank").replaceWith(evensbank());
 }
+render();
